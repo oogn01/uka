@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .blog-post { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .blog-post:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .fade-in { animation: fadeIn 0.6s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-gray-800 cursor-pointer" onclick="showHome()">✨ My Blog</h1>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" onclick="showHome()" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">Home</a>
+                    <a href="#" onclick="showAbout()" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">About</a>
+                    <a href="#" onclick="showContact()" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">Contact</a>
+                </nav>
+                <button class="md:hidden text-gray-600" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <a href="#" onclick="showHome(); toggleMobileMenu()" class="block py-2 text-gray-600 hover:text-indigo-600">Home</a>
+                <a href="#" onclick="showAbout(); toggleMobileMenu()" class="block py-2 text-gray-600 hover:text-indigo-600">About</a>
+                <a href="#" onclick="showContact(); toggleMobileMenu()" class="block py-2 text-gray-600 hover:text-indigo-600">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Home Page -->
+        <div id="homePage" class="fade-in">
+            <!-- Hero Section -->
+            <section class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Welcome to My Blog</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Sharing thoughts, ideas, and stories about life, technology, and everything in between.</p>
+            </section>
+
+            <!-- Featured Post -->
+            <section class="mb-12">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Featured Post</h3>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden blog-post cursor-pointer" onclick="showPost(1)">
+                    <div class="h-64 bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center">
+                        <span class="text-6xl">🚀</span>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-sm text-indigo-600 font-medium">Technology</span>
+                        <h4 class="text-2xl font-bold text-gray-800 mt-2 mb-3">The Future of Web Development</h4>
+                        <p class="text-gray-600 mb-4">Exploring the latest trends and technologies that are shaping the future of web development, from AI integration to new frameworks...</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>March 15, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Posts -->
+            <section>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Recent Posts</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <article class="bg-white rounded-xl shadow-lg overflow-hidden blog-post cursor-pointer" onclick="showPost(2)">
+                        <div class="h-48 bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                            <span class="text-4xl">🌱</span>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm text-green-600 font-medium">Lifestyle</span>
+                            <h4 class="text-xl font-bold text-gray-800 mt-2 mb-3">Building Healthy Habits</h4>
+                            <p class="text-gray-600 mb-4">Simple strategies to create lasting positive changes in your daily routine...</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <span>March 12, 2024</span>
+                                <span class="mx-2">•</span>
+                                <span>3 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-xl shadow-lg overflow-hidden blog-post cursor-pointer" onclick="showPost(3)">
+                        <div class="h-48 bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center">
+                            <span class="text-4xl">☕</span>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm text-yellow-600 font-medium">Food & Drink</span>
+                            <h4 class="text-xl font-bold text-gray-800 mt-2 mb-3">Perfect Morning Coffee</h4>
+                            <p class="text-gray-600 mb-4">Discovering the art of brewing the perfect cup to start your day right...</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <span>March 10, 2024</span>
+                                <span class="mx-2">•</span>
+                                <span>4 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-xl shadow-lg overflow-hidden blog-post cursor-pointer" onclick="showPost(4)">
+                        <div class="h-48 bg-gradient-to-r from-pink-400 to-red-500 flex items-center justify-center">
+                            <span class="text-4xl">📚</span>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm text-pink-600 font-medium">Books</span>
+                            <h4 class="text-xl font-bold text-gray-800 mt-2 mb-3">Must-Read Books of 2024</h4>
+                            <p class="text-gray-600 mb-4">A curated list of inspiring books that have shaped my thinking this year...</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <span>March 8, 2024</span>
+                                <span class="mx-2">•</span>
+                                <span>6 min read</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <!-- Individual Post View -->
+        <div id="postPage" class="hidden fade-in">
+            <button onclick="showHome()" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Home
+            </button>
+            <article class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+                <div id="postContent">
+                    <!-- Post content will be inserted here -->
+                </div>
+            </article>
+        </div>
+
+        <!-- About Page -->
+        <div id="aboutPage" class="hidden fade-in">
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                    <div class="w-32 h-32 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full flex items-center justify-center text-4xl">
+                        👋
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-600 mb-4 text-lg leading-relaxed">
+                            Hello! I'm a passionate writer and creator who loves sharing insights about technology, lifestyle, and personal growth. 
+                            This blog is my space to explore ideas, share experiences, and connect with like-minded individuals.
+                        </p>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            When I'm not writing, you can find me experimenting with new technologies, reading books, or enjoying a perfect cup of coffee. 
+                            I believe in the power of continuous learning and the importance of sharing knowledge with others.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600">Twitter</a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-800">LinkedIn</a>
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-800">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contactPage" class="hidden fade-in">
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Get In Touch</h2>
+                <p class="text-gray-600 mb-8">I'd love to hear from you! Whether you have a question, feedback, or just want to say hello.</p>
+                
+                <form onsubmit="handleContactForm(event)" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                        Send Message
+                    </button>
+                </form>
+                
+                <div id="contactSuccess" class="hidden mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                    Thank you for your message! I'll get back to you soon.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-16 py-8 border-t">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-600">&copy; 2025 Urangoo's Blog.  Made with ❤️.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Blog posts data
+        const posts = {
+            1: {
+                title: "The Future of Web Development",
+                category: "Technology",
+                date: "March 15, 2024",
+                readTime: "5 min read",
+                emoji: "🚀",
+                content: `
+                    <div class="h-64 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg flex items-center justify-center mb-8">
+                        <span class="text-6xl">🚀</span>
+                    </div>
+                    <span class="text-sm text-indigo-600 font-medium">Technology</span>
+                    <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-4">The Future of Web Development</h1>
+                    <div class="flex items-center text-sm text-gray-500 mb-8">
+                        <span>March 15, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="prose prose-lg max-w-none">
+                        <p>The world of web development is evolving at an unprecedented pace. From artificial intelligence integration to revolutionary new frameworks, the landscape is shifting in ways that will fundamentally change how we build and interact with web applications.</p>
+                        
+                        <h3>AI-Powered Development</h3>
+                        <p>Artificial intelligence is no longer just a buzzword in web development. Tools like GitHub Copilot and ChatGPT are already helping developers write code faster and more efficiently. But this is just the beginning.</p>
+                        
+                        <h3>The Rise of Edge Computing</h3>
+                        <p>Edge computing is bringing processing power closer to users, resulting in faster load times and better user experiences. This shift is particularly important for mobile users and IoT applications.</p>
+                        
+                        <h3>WebAssembly's Growing Impact</h3>
+                        <p>WebAssembly (WASM) is enabling high-performance applications to run in browsers, opening up possibilities for complex applications that were previously only possible with native development.</p>
+                        
+                        <p>As we look toward the future, one thing is clear: the web development landscape will continue to evolve, and staying adaptable will be key to success in this dynamic field.</p>
+                    </div>
+                `
+            },
+            2: {
+                title: "Building Healthy Habits",
+                category: "Lifestyle",
+                date: "March 12, 2024",
+                readTime: "3 min read",
+                emoji: "🌱",
+                content: `
+                    <div class="h-64 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg flex items-center justify-center mb-8">
+                        <span class="text-6xl">🌱</span>
+                    </div>
+                    <span class="text-sm text-green-600 font-medium">Lifestyle</span>
+                    <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-4">Building Healthy Habits</h1>
+                    <div class="flex items-center text-sm text-gray-500 mb-8">
+                        <span>March 12, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>3 min read</span>
+                    </div>
+                    <div class="prose prose-lg max-w-none">
+                        <p>Creating lasting positive changes in your life doesn't happen overnight. It's about building small, sustainable habits that compound over time to create significant transformations.</p>
+                        
+                        <h3>Start Small</h3>
+                        <p>The key to building lasting habits is to start incredibly small. Want to exercise more? Start with just 5 minutes a day. Want to read more? Begin with just one page before bed.</p>
+                        
+                        <h3>Consistency Over Intensity</h3>
+                        <p>It's better to do something small every day than to do something big once in a while. Consistency builds momentum and makes the habit feel natural over time.</p>
+                        
+                        <h3>Track Your Progress</h3>
+                        <p>What gets measured gets managed. Keep a simple habit tracker or journal to monitor your progress and celebrate small wins along the way.</p>
+                        
+                        <p>Remember, building healthy habits is a marathon, not a sprint. Be patient with yourself and focus on progress, not perfection.</p>
+                    </div>
+                `
+            },
+            3: {
+                title: "Perfect Morning Coffee",
+                category: "Food & Drink",
+                date: "March 10, 2024",
+                readTime: "4 min read",
+                emoji: "☕",
+                content: `
+                    <div class="h-64 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center mb-8">
+                        <span class="text-6xl">☕</span>
+                    </div>
+                    <span class="text-sm text-yellow-600 font-medium">Food & Drink</span>
+                    <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-4">Perfect Morning Coffee</h1>
+                    <div class="flex items-center text-sm text-gray-500 mb-8">
+                        <span>March 10, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>4 min read</span>
+                    </div>
+                    <div class="prose prose-lg max-w-none">
+                        <p>There's something magical about that first cup of coffee in the morning. It's not just about the caffeine – it's about the ritual, the aroma, and the moment of calm before the day begins.</p>
+                        
+                        <h3>Choose Quality Beans</h3>
+                        <p>The foundation of great coffee starts with quality beans. Look for freshly roasted beans from reputable roasters, and try to use them within 2-4 weeks of the roast date.</p>
+                        
+                        <h3>Grind Fresh</h3>
+                        <p>Pre-ground coffee loses its flavor quickly. Invest in a good burr grinder and grind your beans just before brewing for the best taste.</p>
+                        
+                        <h3>Water Matters</h3>
+                        <p>Coffee is 98% water, so the quality of your water significantly impacts the final taste. Use filtered water heated to about 200°F (just off boiling).</p>
+                        
+                        <h3>Find Your Ratio</h3>
+                        <p>A good starting point is a 1:15 ratio – 1 gram of coffee to 15 grams of water. Adjust to your taste preferences from there.</p>
+                        
+                        <p>The perfect cup of coffee is ultimately the one you enjoy most. Experiment with different beans, brewing methods, and ratios until you find your ideal morning companion.</p>
+                    </div>
+                `
+            },
+            4: {
+                title: "Must-Read Books of 2024",
+                category: "Books",
+                date: "March 8, 2024",
+                readTime: "6 min read",
+                emoji: "📚",
+                content: `
+                    <div class="h-64 bg-gradient-to-r from-pink-400 to-red-500 rounded-lg flex items-center justify-center mb-8">
+                        <span class="text-6xl">📚</span>
+                    </div>
+                    <span class="text-sm text-pink-600 font-medium">Books</span>
+                    <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-4">Must-Read Books of 2024</h1>
+                    <div class="flex items-center text-sm text-gray-500 mb-8">
+                        <span>March 8, 2024</span>
+                        <span class="mx-2">•</span>
+                        <span>6 min read</span>
+                    </div>
+                    <div class="prose prose-lg max-w-none">
+                        <p>Reading has the power to transform our perspectives, challenge our assumptions, and inspire us to grow. Here are some books that have significantly impacted my thinking this year.</p>
+                        
+                        <h3>"Atomic Habits" by James Clear</h3>
+                        <p>This book revolutionizes how we think about habit formation. Clear's practical approach to building good habits and breaking bad ones is both scientifically backed and incredibly actionable.</p>
+                        
+                        <h3>"The Psychology of Money" by Morgan Housel</h3>
+                        <p>Housel explores the strange ways people think about money and teaches you how to make better sense of one of life's most important topics. It's less about math and more about behavior.</p>
+                        
+                        <h3>"Educated" by Tara Westover</h3>
+                        <p>A powerful memoir about education, family, and the struggle between loyalty and independence. Westover's journey from a survivalist family to Cambridge University is both heartbreaking and inspiring.</p>
+                        
+                        <h3>"Digital Minimalism" by Cal Newport</h3>
+                        <p>In our hyper-connected world, Newport offers a philosophy for technology use that focuses on what truly matters. A timely read for anyone feeling overwhelmed by digital distractions.</p>
+                        
+                        <p>Each of these books offers unique insights that can help you think differently about important aspects of life. I highly recommend adding them to your reading list!</p>
+                    </div>
+                `
+            }
+        };
+
+        // Navigation functions
+        function showHome() {
+            hideAllPages();
+            document.getElementById('homePage').classList.remove('hidden');
+            document.getElementById('homePage').classList.add('fade-in');
+        }
+
+        function showAbout() {
+            hideAllPages();
+            document.getElementById('aboutPage').classList.remove('hidden');
+            document.getElementById('aboutPage').classList.add('fade-in');
+        }
+
+        function showContact() {
+            hideAllPages();
+            document.getElementById('contactPage').classList.remove('hidden');
+            document.getElementById('contactPage').classList.add('fade-in');
+        }
+
+        function showPost(postId) {
+            hideAllPages();
+            const post = posts[postId];
+            if (post) {
+                document.getElementById('postContent').innerHTML = post.content;
+                document.getElementById('postPage').classList.remove('hidden');
+                document.getElementById('postPage').classList.add('fade-in');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function hideAllPages() {
+            const pages = ['homePage', 'aboutPage', 'contactPage', 'postPage'];
+            pages.forEach(pageId => {
+                const page = document.getElementById(pageId);
+                page.classList.add('hidden');
+                page.classList.remove('fade-in');
+            });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function handleContactForm(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Simulate form submission
+            setTimeout(() => {
+                document.getElementById('contactSuccess').classList.remove('hidden');
+                event.target.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('contactSuccess').classList.add('hidden');
+                }, 5000);
+            }, 500);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            showHome();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98389a018594154f',t:'MTc1ODYxNTQwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
